@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="jdbc/sqljdbc4.jar"/>
+
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <!-- 生成分页插件方法 -->
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        <!-- 去除自动生成的注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+
+        <jdbcConnection
+            driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            connectionURL="jdbc:sqlserver://localhost:1433;databaseName=BDTOA;integratedSecurity=true"
+            userId="sa"
+            password="123456">
+        </jdbcConnection>
+        <!--<jdbcConnection driverClass="net.sourceforge.jtds.jdbc.Driver"
+                        connectionURL="jdbc:jtds:sqlserver://localhost:1433;DatabaseName=BDTOA"
+                        userId="sa"
+                        password="123456">
+        </jdbcConnection>-->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.bdt.bean" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.bdt.mapper" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.bdt.mapper" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="com.bdt.mapper" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>-->
+
+
+        <table tableName="JEHR_project" domainObjectName="Project">
+            <generatedKey column="p_id" sqlStatement="SqlServer" identity="true"/>
+        </table>
+        <table tableName="view_JEHR_ERPUser" domainObjectName="User"
+               enableDeleteByExample="false"
+               enableDeleteByPrimaryKey="false"
+               enableInsert="false"
+               enableUpdateByExample="false"
+               enableUpdateByPrimaryKey="false">
+        </table>
+    </context>
+</generatorConfiguration>
